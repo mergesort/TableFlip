@@ -27,7 +27,7 @@ Animations are completely customizable and configurable. Tableau provides a few 
 TableViewAnimation.left(duration: 0.5, staggered: true)
 ```
 
-![](images/Animations/left.gif)
+![](gifs/left.gif)
 
 
 ### Pushing from the top can make a nice initial loading effect:
@@ -36,7 +36,7 @@ TableViewAnimation.left(duration: 0.5, staggered: true)
 TableViewAnimation.top(duration: 0.5)
 ```
 
-![](images/Animations/top.gif)
+![](gifs/top.gif)
 
 ### Or try a simple fade for elegance's sake:
 
@@ -44,7 +44,7 @@ TableViewAnimation.top(duration: 0.5)
 TableViewAnimation.fade(duration: 0.5, consecutively: true)
 ```
 
-![](images/Animations/fade.gif)
+![](gifs/fade.gif)
 
 
 ### Constructing your own complex animation using CGAffineTransform:
@@ -58,7 +58,7 @@ let customTransform = rotationTransform.concatenating(translationTransform)
 TableViewAnimation.custom(duration: 1.0, startingTransform: customTransform, staggered: true)
 ```
 
-![](images/Animations/custom.gif)
+![](gifs/custom.gif)
 
 
 ## Installation
@@ -80,12 +80,6 @@ Hi, I'm [Joe](http://fabisevi.ch) everywhere on the web, but especially on [Twit
 ## License
 
 See the [license](LICENSE) for more information about how you can use Tableau.
-
-## Fin
-
-Now get to animating without having to worry about UITableView's state.
-
-![](images/gaga.gif)
 
 ## P.S.
 
