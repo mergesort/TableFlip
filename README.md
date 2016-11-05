@@ -1,19 +1,13 @@
 # Tableau
 
 
-## Animations are cool.
+### Animations are cool. UITableView isn't. So why not make animating UITableView cool?
 
-![](images/cube.gif)
+---
 
-## UITableView isn't.
+##### The entire API for Tableau consists of an animation, and a call to animate. It's as simple as that.
 
-![](images/table.png)
-
-## So why not make animating UITableView cool?
-
-The entire API is consistent of an animation, and a call to animate. It's as simple as that.
-
-Tableau takes the annoying nature of reloading UITableViews and minimizes the API to just thinking of how to transform 1 UITableViewcell.
+##### Tableau takes the annoying nature of reloading UITableViews and minimizes the API to just thinking of how to transform 1 UITableViewcell.
 
 ### In practice, all you'll have to do is this.
 
@@ -22,7 +16,7 @@ self.tableView.reloadData()
 self.tableView.animateRows(animation: myCoolAnimation)
 ```
 
-Animations are completely customizable and configurable. Tableau provides a few smooth built defaults if you don't want to make your own.
+Animations are completely customizable and configurable. Tableau provides a few built-in defaults that work nicely out the box, if you don't want to make your own.
 
 ## Let's look at some examples.
 
