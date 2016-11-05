@@ -58,6 +58,8 @@ let customTransform = rotationTransform.concatenating(translationTransform)
 TableViewAnimation.custom(duration: 1.0, startingTransform: customTransform, staggered: true)
 ```
 
+![](images/Animations/custom.gif)
+
 
 ## Installation
 You can use [CocoaPods](http://cocoapods.org/) to install `Tableau` by adding it to your `Podfile`:
