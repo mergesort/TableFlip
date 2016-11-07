@@ -7,24 +7,31 @@
 
 ##### The entire API for Tableau consists of an animation, and a call to animate. It's as simple as that.
 
-##### Tableau takes the annoying nature of reloading UITableViews and minimizes the API to just thinking of how to transform 1 UITableViewcell.
+##### Tableau takes the annoying nature of reloading UITableViews, maintaining state, and anminating, and minimizes it to two lines of code.
 
-### In practice, all you'll have to do is this.
+##### If you want to animate every cell consecutively, the code will look like this.
 
 ```swift
 self.tableView.reloadData()
-self.tableView.animateRows(animation: myCoolAnimation)
+self.tableView.animateCells(animation: myCoolCellAnimation)
+```
+
+##### And if you want to animate the entire table view at once, the code will look like this: 
+
+```swift
+self.tableView.reloadData()
+self.tableView.animateTableView(animation: myCoolTableAnimation)
 ```
 
 Animations are completely customizable and configurable. Tableau provides a few built-in defaults that work nicely out the box, if you don't want to make your own.
 
-## Let's look at some examples.
+## Let's look at some examples
 
 
-### Animating from the left with a nice stagger:
+### Animating from the left with a nice staggered effect:
 
 ```swift
-TableViewAnimation.left(duration: 0.5, staggered: true)
+TableViewAnimation.Cell.left(duration: 0.5)
 ```
 
 ![](gifs/left.gif)
@@ -33,29 +40,29 @@ TableViewAnimation.left(duration: 0.5, staggered: true)
 ### Pushing from the top can make a nice initial loading effect:
 
 ```swift
-TableViewAnimation.top(duration: 0.5)
+TableViewAnimation.Table.top(duration: 0.8)
 ```
 
 ![](gifs/top.gif)
 
-### Or try a simple fade for elegance's sake:
+### A simple fade is always elegant:
 
 ```swift
-TableViewAnimation.fade(duration: 0.5, consecutively: true)
+TableViewAnimation.Cell.fade(duration: 1.0)
 ```
 
 ![](gifs/fade.gif)
 
 
-### Constructing your own complex animation using CGAffineTransform:
+### And you can make your own transform, as fun or weird as you want by using CGAffineTransform:
 
 ```swift
 let degrees = CGFloat(sin(90.0 * M_PI/180.0))
 let rotationTransform = CGAffineTransform(rotationAngle: degrees)
-let translationTransform = CGAffineTransform(translationX: -300.0, y: 0.0)
-let customTransform = rotationTransform.concatenating(translationTransform)
+let flipTransform = CGAffineTransform(scaleX: -1, y: -1)
+let customTransform = rotationTransform.concatenating(flipTransform)
 
-TableViewAnimation.custom(duration: 1.0, startingTransform: customTransform, staggered: true)
+self.loadImages(withAnimation: TableViewAnimation.Cell.custom(duration: 0.6, transform: customTransform, options: .curveEaseInOut))
 ```
 
 ![](gifs/custom.gif)

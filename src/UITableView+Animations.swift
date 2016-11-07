@@ -7,116 +7,157 @@ import UIKit
 
 public enum TableViewAnimation {
 
-    case left(duration: TimeInterval, staggered: Bool)
-    case right(duration: TimeInterval, staggered: Bool)
-    case top(duration: TimeInterval)
-    case bottom(duration: TimeInterval)
-    case fade(duration: TimeInterval, consecutively: Bool)
-    case custom(duration: TimeInterval, startingTransform: CGAffineTransform, staggered: Bool)
+    public enum Table {
 
-    fileprivate enum AnimationDirection {
+        case top(duration: TimeInterval)
+        case bottom(duration: TimeInterval)
+        case fade(duration: TimeInterval)
+        case custom(duration: TimeInterval, transform: CGAffineTransform, options: UIViewAnimationOptions)
 
-        case left
-        case right
-        case top
-        case bottom
+        fileprivate enum AnimationDirection {
 
-        func xPosition(cell: UITableViewCell) -> CGFloat {
-            if case .left = self {
-                return -cell.frame.width
-            } else if case .right = self {
-                return cell.frame.width
-            } else {
-                return 0
+            case top
+            case bottom
+
+            func yPosition(tableView: UITableView) -> CGFloat {
+                if case .top = self {
+                    return -tableView.frame.height
+                } else if case .bottom = self {
+                    return tableView.frame.height
+                } else {
+                    return 0
+                }
             }
-        }
 
-        func yPosition(tableView: UITableView) -> CGFloat {
-            if case .top = self {
-                return -tableView.frame.height
-            } else if case .bottom = self {
-                return tableView.frame.height
-            } else {
-                return 0
+        }
+    }
+
+    public enum Cell {
+
+        case left(duration: TimeInterval)
+        case right(duration: TimeInterval)
+        case fade(duration: TimeInterval)
+        case custom(duration: TimeInterval, transform: CGAffineTransform, options: UIViewAnimationOptions)
+
+        fileprivate enum AnimationDirection {
+
+            case left
+            case right
+
+            func xPosition(cell: UITableViewCell) -> CGFloat {
+                if case .left = self {
+                    return -cell.frame.width
+                } else if case .right = self {
+                    return cell.frame.width
+                } else {
+                    return 0
+                }
             }
-        }
 
+        }
     }
 
 }
 
 public extension UITableView {
 
-    public func animateRows(animation: TableViewAnimation, completion: (() -> Void)? = nil) {
+    public func animateTableView(animation: TableViewAnimation.Table, completion: (() -> Void)? = nil) {
         switch animation {
 
-        case .left(let duration, let staggered):
-            self.animateTableViewWithDirection(duration: duration, direction: .left, staggered: staggered, strongDamping: false, completion: completion)
-
-        case .right(let duration, let staggered):
-            self.animateTableViewWithDirection(duration: duration, direction: .right, staggered: staggered, strongDamping: false, completion: completion)
-
         case .top(let duration):
-            self.animateTableViewWithDirection(duration: duration, direction: .top, staggered: false, strongDamping: true, completion: completion)
+            self.animateTableViewWithDirection(duration: duration, direction: .top, completion: completion)
 
         case .bottom(let duration):
-            self.animateTableViewWithDirection(duration: duration, direction: .bottom, staggered: false, strongDamping: false, completion: completion)
+            self.animateTableViewWithDirection(duration: duration, direction: .bottom, completion: completion)
 
-        case .fade(let duration, let consecutively):
-            self.animateTableViewWithFade(duration: duration, consecutively: consecutively, completion: completion)
+        case .fade(let duration):
+            self.animateWithFade(duration: duration, consecutively: false, completion: completion)
 
-        case .custom(let duration, let startingTransform, let staggered):
-            self.animateTableViewWithTransform(duration: duration, transform: startingTransform, staggered: staggered, completion: completion)
+        case .custom(let duration, let transform, let animationOptions):
+            self.animateTableViewWithTransform(duration: duration, transform: transform, options: animationOptions, completion: completion)
 
         }
     }
 
-    public func reloadTableViewWithFadeAnimation(duration: TimeInterval = 0.3, completion: (() -> Void)? = nil) {
-        self.reloadData()
+    public func animateCells(animation: TableViewAnimation.Cell, completion: (() -> Void)? = nil) {
+        switch animation {
 
-        self.animateTableViewWithFade(duration: duration, consecutively: false, completion: completion)
+        case .left(let duration):
+            self.animateTableCellsWithDirection(duration: duration, direction: .left, completion: completion)
+
+        case .right(let duration):
+            self.animateTableCellsWithDirection(duration: duration, direction: .right, completion: completion)
+
+        case .fade(let duration):
+            self.animateWithFade(duration: duration, consecutively: true, completion: completion)
+
+        case .custom(let duration, let transform, let animationOptions):
+            self.animateTableCellsWithTransform(duration: duration, transform: transform, options: animationOptions, completion: completion)
+
+        }
     }
 
-    public func reloadTableViewSmoothly() {
-        UIView.setAnimationsEnabled(false)
-        CATransaction.begin()
+    public func reloadData(smoothly: Bool, completion: (() -> Void)? = nil) {
+        if smoothly {
+            UIView.setAnimationsEnabled(false)
+            CATransaction.begin()
 
-        CATransaction.setCompletionBlock { () -> Void in
-            UIView.setAnimationsEnabled(true)
+            CATransaction.setCompletionBlock { () -> Void in
+                UIView.setAnimationsEnabled(true)
+                completion?()
+            }
+
+            self.reloadData()
+            self.beginUpdates()
+            self.endUpdates()
+            
+            CATransaction.commit()
+        } else {
+            self.reloadData()
         }
-
-        self.reloadData()
-        self.beginUpdates()
-        self.endUpdates()
-
-        CATransaction.commit()
     }
 
 }
 
+// MARK: UITableView animations
+
 fileprivate extension UITableView {
 
-    func animateTableViewWithTransform(duration: TimeInterval, transform: CGAffineTransform, staggered: Bool, completion: (() -> Void)? = nil) {
-        for (index, cell) in self.visibleCells.enumerated() {
-            let delay: TimeInterval = staggered ? duration/Double(self.visibleCells.count)*Double(index) : 0.0
-            let damping: CGFloat = staggered ? 0.55 : 0.75
+    func animateTableViewWithTransform(duration: TimeInterval, transform: CGAffineTransform, options: UIViewAnimationOptions = .curveEaseInOut, completion: (() -> Void)? = nil) {
+        self.layer.setAffineTransform(transform)
 
-            cell.layer.setAffineTransform(transform)
-
-            UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: 0.0, options: .curveEaseInOut, animations: {
-                cell.layer.setAffineTransform(.identity)
-            }, completion: { finished in
-                completion?()
-            })
-        }
+        UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 0.75, initialSpringVelocity: 0.0, options: options, animations: {
+            self.layer.setAffineTransform(.identity)
+        }, completion: { finished in
+            completion?()
+        })
     }
 
-    func animateTableViewWithDirection(duration: TimeInterval, direction: TableViewAnimation.AnimationDirection, staggered: Bool, strongDamping: Bool, completion: (() -> Void)? = nil) {
-        for (index, cell) in self.visibleCells.enumerated() {
-            let delay: TimeInterval = staggered ? duration/Double(self.visibleCells.count)*Double(index) : 0.0
-            let damping: CGFloat = staggered ? 0.55 : 0.75
+    func animateTableViewWithDirection(duration: TimeInterval, direction: TableViewAnimation.Table.AnimationDirection, completion: (() -> Void)? = nil) {
+        let damping: CGFloat = 0.75
 
-            let cellTransform = CGAffineTransform(translationX: direction.xPosition(cell: cell), y: direction.yPosition(tableView: self))
+        let cellTransform = CGAffineTransform(translationX: 0.0, y: direction.yPosition(tableView: self))
+        self.layer.setAffineTransform(cellTransform)
+
+        UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: damping, initialSpringVelocity: 0.0, options: .curveEaseInOut, animations: {
+            self.layer.setAffineTransform(.identity)
+        }, completion: { finished in
+            completion?()
+        })
+    }
+
+}
+
+// MARK: UITableViewCell animations
+
+fileprivate extension UITableView {
+
+    func animateTableCellsWithDirection(duration: TimeInterval, direction: TableViewAnimation.Cell.AnimationDirection, completion: (() -> Void)? = nil) {
+        for (index, cell) in self.visibleCells.enumerated() {
+            let delay: TimeInterval = duration/Double(self.visibleCells.count)*Double(index)
+            let damping: CGFloat = 0.55
+
+            let cellTransform = CGAffineTransform(translationX: direction.xPosition(cell: cell), y: 0.0)
             cell.layer.setAffineTransform(cellTransform)
 
             UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: 0.0, options: .curveEaseInOut, animations: {
@@ -125,9 +166,31 @@ fileprivate extension UITableView {
                 completion?()
             })
         }
+
     }
 
-    func animateTableViewWithFade(duration: TimeInterval, consecutively: Bool, completion: (() -> Void)? = nil) {
+    func animateTableCellsWithTransform(duration: TimeInterval, transform: CGAffineTransform, options: UIViewAnimationOptions = .curveEaseInOut, completion: (() -> Void)? = nil) {
+        for (index, cell) in self.visibleCells.enumerated() {
+            let delay: TimeInterval = duration/Double(self.visibleCells.count)*Double(index)
+            let damping: CGFloat = 0.55
+
+            cell.layer.setAffineTransform(transform)
+
+            UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: 0.0, options: options, animations: {
+                cell.layer.setAffineTransform(.identity)
+            }, completion: { finished in
+                completion?()
+            })
+        }
+    }
+
+}
+
+// MARK: Shared UITableView + UITableViewCell animations
+
+fileprivate extension UITableView {
+
+    func animateWithFade(duration: TimeInterval, consecutively: Bool, completion: (() -> Void)? = nil) {
         if consecutively {
             for (index, cell) in self.visibleCells.enumerated() {
                 let animationDelay: TimeInterval = duration/Double(visibleCells.count)*Double(index)
