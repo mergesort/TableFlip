@@ -61,7 +61,7 @@ public enum TableViewAnimation {
 
 public extension UITableView {
 
-    public func animateTableView(animation: TableViewAnimation.Table, completion: (() -> Void)? = nil) {
+    func animateTableView(animation: TableViewAnimation.Table, completion: (() -> Void)? = nil) {
         switch animation {
 
         case .top(let duration):
@@ -79,7 +79,7 @@ public extension UITableView {
         }
     }
 
-    public func animateCells(animation: TableViewAnimation.Cell, completion: (() -> Void)? = nil) {
+    func animateCells(animation: TableViewAnimation.Cell, completion: (() -> Void)? = nil) {
         switch animation {
 
         case .left(let duration):
@@ -97,24 +97,25 @@ public extension UITableView {
         }
     }
 
-    public func reloadData(smoothly: Bool, completion: (() -> Void)? = nil) {
-        if smoothly {
-            UIView.setAnimationsEnabled(false)
-            CATransaction.begin()
-
-            CATransaction.setCompletionBlock { () -> Void in
-                UIView.setAnimationsEnabled(true)
-                completion?()
-            }
-
+    func reloadData(smoothly: Bool, completion: (() -> Void)? = nil) {
+        guard smoothly else {
             self.reloadData()
-            self.beginUpdates()
-            self.endUpdates()
-            
-            CATransaction.commit()
-        } else {
-            self.reloadData()
+            return
         }
+
+        UIView.setAnimationsEnabled(false)
+        CATransaction.begin()
+
+        CATransaction.setCompletionBlock {
+            UIView.setAnimationsEnabled(true)
+            completion?()
+        }
+
+        self.reloadData()
+        self.beginUpdates()
+        self.endUpdates()
+        
+        CATransaction.commit()
     }
 
 }
