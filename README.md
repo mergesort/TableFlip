@@ -1,13 +1,16 @@
-# Tableau
+# TableFlip
 
+# (╯°□°）╯︵ ┻━┻
+### ┬──┬ ノ( ゜-゜ノ)
+---
 
 ### Animations are cool. UITableView isn't. So why not make animating UITableView cool?
 
 ---
 
-##### The entire API for Tableau consists of an animation, and a call to animate. It's as simple as that.
+##### The entire API for TableFlip consists of an animation, and a call to animate. It's as simple as that.
 
-##### Tableau takes the annoying nature of reloading UITableViews, maintaining state, and anminating, and minimizes it to two lines of code.
+##### TableFlip takes the annoying nature of reloading UITableViews, maintaining state, and anminating, and minimizes it to two lines of code.
 
 ##### If you want to animate every cell consecutively, the code will look like this.
 
@@ -23,7 +26,7 @@ self.tableView.reloadData()
 self.tableView.animateTableView(animation: myCoolTableAnimation)
 ```
 
-Animations are completely customizable and configurable. Tableau provides a few built-in defaults that work nicely out the box, if you don't want to make your own.
+Animations are completely customizable and configurable. TableFlip provides a few built-in defaults that work nicely out the box, if you don't want to make your own.
 
 ## Let's look at some examples
 
@@ -69,13 +72,13 @@ self.loadImages(withAnimation: TableViewAnimation.Cell.custom(duration: 0.6, tra
 
 
 ## Installation
-You can use [CocoaPods](http://cocoapods.org/) to install `Tableau` by adding it to your `Podfile`:
+You can use [CocoaPods](http://cocoapods.org/) to install `TableFlip` by adding it to your `Podfile`:
 
 ```swift
 platform :ios, '8.0'
 use_frameworks!
 
-pod 'Tableau'
+pod 'TableFlip'
 ```
 
 Or install it manually by downloading `UITableView+Animations.swift` and dropping it in your project.
@@ -86,7 +89,7 @@ Hi, I'm [Joe](http://fabisevi.ch) everywhere on the web, but especially on [Twit
 
 ## License
 
-See the [license](LICENSE) for more information about how you can use Tableau.
+See the [license](LICENSE) for more information about how you can use TableFlip.
 
 ## P.S.
 
