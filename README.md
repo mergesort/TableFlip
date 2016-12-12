@@ -1,9 +1,14 @@
 # TableFlip
 
 ### (╯°□°）╯︵ ┻━┻
----
+
 ### ┬──┬ ノ( ゜-゜ノ)
 ---
+
+[![Pod Version](https://img.shields.io/badge/Pod-1.0-6193DF.svg)](https://cocoapods.org/)
+![Swift Version](https://img.shields.io/badge/Swift-3.0-orange.svg) 
+![License MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg) 
+![Plaform](https://img.shields.io/badge/Platform-iOS-lightgrey.svg)
 
 ### Animations are cool. UITableView isn't. So why not make animating UITableView cool?
 
@@ -71,11 +76,15 @@ self.loadImages(withAnimation: TableViewAnimation.Cell.custom(duration: 0.6, tra
 
 ![](gifs/custom.gif)
 
+## Requirements
+
+- iOS 8.0+
+- Xcode 7.3
 
 ## Installation
 You can use [CocoaPods](http://cocoapods.org/) to install `TableFlip` by adding it to your `Podfile`:
 
-```swift
+```ruby
 platform :ios, '8.0'
 use_frameworks!
 
