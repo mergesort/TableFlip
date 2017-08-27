@@ -79,21 +79,21 @@ public extension UITableView {
         }
     }
 
-    func animateCells(animation: TableViewAnimation.Cell, completion: (() -> Void)? = nil) {
+    func animateCells(animation: TableViewAnimation.Cell, indexPaths: [IndexPath]? = nil, completion: (() -> Void)? = nil) {
         switch animation {
 
         case .left(let duration):
-            self.animateTableCellsWithDirection(duration: duration, direction: .left, completion: completion)
+            self.animateTableCellsWithDirection(duration: duration, direction: .left, indexPaths: indexPaths, completion: completion)
 
         case .right(let duration):
-            self.animateTableCellsWithDirection(duration: duration, direction: .right, completion: completion)
+            self.animateTableCellsWithDirection(duration: duration, direction: .right, indexPaths: indexPaths, completion: completion)
 
         case .fade(let duration):
             self.animateWithFade(duration: duration, consecutively: true, completion: completion)
 
         case .custom(let duration, let transform, let animationOptions):
             self.animateTableCellsWithTransform(duration: duration, transform: transform, options: animationOptions, completion: completion)
-
+       
         }
     }
 
@@ -153,8 +153,18 @@ fileprivate extension UITableView {
 
 fileprivate extension UITableView {
 
-    func animateTableCellsWithDirection(duration: TimeInterval, direction: TableViewAnimation.Cell.AnimationDirection, completion: (() -> Void)? = nil) {
-        for (index, cell) in self.visibleCells.enumerated() {
+    func animateTableCellsWithDirection(duration: TimeInterval, direction: TableViewAnimation.Cell.AnimationDirection, indexPaths:[IndexPath]?, completion: (() -> Void)? = nil) {
+
+        let visibleCells: [UITableViewCell]
+
+        if let indexPaths = indexPaths {
+            let visibleIndexPaths = indexPaths.flatMap({ return (self.indexPathsForVisibleRows?.contains($0) ?? false) ? $0 : nil })
+            visibleCells = visibleIndexPaths.flatMap { self.cellForRow(at: $0) }
+        } else {
+            visibleCells = self.visibleCells
+        }
+
+        for (index, cell) in visibleCells.enumerated() {
             let delay: TimeInterval = duration/Double(self.visibleCells.count)*Double(index)
             let damping: CGFloat = 0.55
 

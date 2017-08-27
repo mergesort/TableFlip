@@ -14,6 +14,7 @@ enum ExampleAnimation {
     case top
     case left
     case custom
+    case indexPaths
 
 }
 
@@ -78,6 +79,9 @@ private extension TableViewController {
         case .fade:
             self.title = "Fade Animation"
             
+        case .indexPaths:
+            self.title = "Select Index Paths Animation"
+            
         }
         
         // Delayed to simulate a network connection, like in the real world, which is where I live.
@@ -123,6 +127,11 @@ private extension TableViewController {
             let customAnimation = TableViewAnimation.Cell.custom(duration: 0.6, transform: customTransform, options: .curveEaseInOut)
 
             self.tableView.animateCells(animation: customAnimation, completion: nil)
+
+        case .indexPaths:
+            let evenIndices = (0..<self.dataSource.exampleItems.count).flatMap { return ($0 % 2 == 0) ? IndexPath(row: $0, section: 0) : nil }
+            let rightAnimation = TableViewAnimation.Cell.right(duration: 0.5)
+            self.tableView.animateCells(animation: rightAnimation, indexPaths: evenIndices, completion: nil)
 
         }
     }

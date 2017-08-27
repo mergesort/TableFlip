@@ -48,7 +48,10 @@ private extension ViewController {
         
         let customAnimationButton = self.makeButton(title: "Custom Animation", backgroundColor: #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1), selector: #selector(tappedCustomAnimationButton))
         self.stackView.addArrangedSubview(customAnimationButton)
-        
+
+        let indexPathsAnimationButton = self.makeButton(title: "Index Paths Animation", backgroundColor: #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1), selector: #selector(tappedIndexPathAnimationButton))
+        self.stackView.addArrangedSubview(indexPathsAnimationButton)
+
         self.setupConstraints()
     }
 
@@ -94,4 +97,7 @@ private extension ViewController {
         self.pushTableViewController(animation: .left)
     }
     
+    @objc func tappedIndexPathAnimationButton() {
+        self.pushTableViewController(animation: .indexPaths)
+    }
 }
