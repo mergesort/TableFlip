@@ -66,12 +66,14 @@ TableViewAnimation.Cell.fade(duration: 1.0)
 ### And you can make your own transform, as fun or weird as you want by using CGAffineTransform:
 
 ```swift
-let degrees = CGFloat(sin(90.0 * M_PI/180.0))
+let degrees = sin(90.0 * CGFloat.pi/180.0)
 let rotationTransform = CGAffineTransform(rotationAngle: degrees)
 let flipTransform = CGAffineTransform(scaleX: -1, y: -1)
 let customTransform = rotationTransform.concatenating(flipTransform)
 
-self.loadImages(withAnimation: TableViewAnimation.Cell.custom(duration: 0.6, transform: customTransform, options: .curveEaseInOut))
+let customAnimation = TableViewAnimation.Cell.custom(duration: 0.6, transform: customTransform, options: .curveEaseInOut)
+                
+self.tableView.animateCells(animation: customAnimation, completion: nil)
 ```
 
 ![](gifs/custom.gif)

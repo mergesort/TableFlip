@@ -167,7 +167,6 @@ fileprivate extension UITableView {
                 completion?()
             })
         }
-
     }
 
     func animateTableCellsWithTransform(duration: TimeInterval, transform: CGAffineTransform, options: UIViewAnimationOptions = .curveEaseInOut, completion: (() -> Void)? = nil) {
