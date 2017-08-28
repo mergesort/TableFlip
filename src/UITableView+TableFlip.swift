@@ -153,6 +153,7 @@ fileprivate extension UITableView {
 
 fileprivate extension UITableView {
 
+    // Fix this one
     func animateTableCellsWithDirection(duration: TimeInterval, direction: TableViewAnimation.Cell.AnimationDirection, indexPaths:[IndexPath]?, completion: (() -> Void)? = nil) {
 
         let visibleCells: [UITableViewCell]
@@ -173,12 +174,16 @@ fileprivate extension UITableView {
 
             UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: 0.0, options: .curveEaseInOut, animations: {
                 cell.layer.setAffineTransform(.identity)
-            }, completion: { finished in
-                completion?()
-            })
+            }, completion: nil)
+        }
+        
+        let completionDelay: Int = Int((2 * duration)*1000)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(completionDelay)) {
+            completion?()
         }
     }
 
+    // Fix this one
     func animateTableCellsWithTransform(duration: TimeInterval, transform: CGAffineTransform, options: UIViewAnimationOptions = .curveEaseInOut, completion: (() -> Void)? = nil) {
         for (index, cell) in self.visibleCells.enumerated() {
             let delay: TimeInterval = duration/Double(self.visibleCells.count)*Double(index)
@@ -188,9 +193,12 @@ fileprivate extension UITableView {
 
             UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: 0.0, options: options, animations: {
                 cell.layer.setAffineTransform(.identity)
-            }, completion: { finished in
+            }, completion: nil)
+            
+            let completionDelay: Int = Int((2 * duration)*1000)
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(completionDelay)) {
                 completion?()
-            })
+            }
         }
     }
 

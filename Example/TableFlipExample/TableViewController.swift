@@ -116,7 +116,7 @@ private extension TableViewController {
 
         case .left:
             let leftAnimation = TableViewAnimation.Cell.left(duration: 0.5)
-            self.tableView.animateCells(animation: leftAnimation)
+            self.tableView.animateCells(animation: leftAnimation, indexPaths: nil, completion: nil)
 
         case .custom:
             let degrees = sin(90.0 * CGFloat.pi/180.0)
