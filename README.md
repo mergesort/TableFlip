@@ -5,8 +5,11 @@
 ### ┬──┬ ノ( ゜-゜ノ)
 ---
 
-[![Pod Version](https://img.shields.io/badge/Pod-1.0-6193DF.svg)](https://cocoapods.org/)
-![Swift Version](https://img.shields.io/badge/Swift-3.0-orange.svg) 
+[![Pod Version](https://img.shields.io/badge/Pod-1.1-6193DF.svg)](https://cocoapods.org/)
+![Swift Version](https://img.shields.io/badge/Swift-3.0-yellow.svg) 
+![Swift Version](https://img.shields.io/badge/Swift-3.1-orange.svg) 
+![Swift Version](https://img.shields.io/badge/Swift-3.2-green.svg) 
+![Swift Version](https://img.shields.io/badge/Swift-4.0-brightgreen.svg) 
 ![License MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg) 
 ![Plaform](https://img.shields.io/badge/Platform-iOS-lightgrey.svg)
 
