@@ -81,7 +81,7 @@ self.tableView.animateCells(animation: customAnimation, completion: nil)
 ## Requirements
 
 - iOS 8.0+
-- Xcode 7.3
+- Xcode 7.3+
 
 ## Installation
 You can use [CocoaPods](http://cocoapods.org/) to install `TableFlip` by adding it to your `Podfile`:
