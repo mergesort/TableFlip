@@ -223,7 +223,16 @@ fileprivate extension UITableView {
                 completion?()
             }
         } else {
-            let animation = UITableView.fadeAnimationTransition
+            func fadeAnimationTransition() -> CATransition {
+                let animation = CATransition()
+                animation.type = kCATransitionFade
+                animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                animation.fillMode = kCAFillModeBoth
+
+                return animation
+            }
+
+            let animation = fadeAnimationTransition()
             animation.duration = duration
 
             self.layer.add(animation, forKey: "UITableViewReloadDataAnimationKey")
@@ -233,14 +242,4 @@ fileprivate extension UITableView {
             }
         }
     }
-
-    static let fadeAnimationTransition: CATransition = {
-        let animation = CATransition()
-        animation.type = kCATransitionFade
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        animation.fillMode = kCAFillModeBoth
-
-        return animation
-    }()
-
 }
