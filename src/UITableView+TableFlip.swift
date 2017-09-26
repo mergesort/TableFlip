@@ -102,6 +102,7 @@ public extension UITableView {
     func reloadData(smoothly: Bool, completion: (() -> Void)? = nil) {
         guard smoothly else {
             self.reloadData()
+            completion?()
             return
         }
 
