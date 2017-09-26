@@ -108,30 +108,29 @@ private extension TableViewController {
 
         case .top:
             let topAnimation = TableViewAnimation.Table.top(duration: 0.8)
-            self.tableView.animateTableView(animation: topAnimation)
+            self.tableView.animate(animation: topAnimation)
 
         case .fade:
             let fadeAnimation = TableViewAnimation.Cell.fade(duration: 0.5)
-            self.tableView.animateCells(animation: fadeAnimation)
+            self.tableView.animate(animation: fadeAnimation)
 
         case .left:
             let leftAnimation = TableViewAnimation.Cell.left(duration: 0.5)
-            self.tableView.animateCells(animation: leftAnimation, indexPaths: nil, completion: nil)
+            self.tableView.animate(animation: leftAnimation, indexPaths: nil, completion: nil)
 
         case .custom:
             let degrees = sin(90.0 * CGFloat.pi/180.0)
             let rotationTransform = CGAffineTransform(rotationAngle: degrees)
             let flipTransform = CGAffineTransform(scaleX: -1, y: -1)
             let customTransform = rotationTransform.concatenating(flipTransform)
-
             let customAnimation = TableViewAnimation.Cell.custom(duration: 0.6, transform: customTransform, options: .curveEaseInOut)
 
-            self.tableView.animateCells(animation: customAnimation, completion: nil)
+            self.tableView.animate(animation: customAnimation, completion: nil)
 
         case .indexPaths:
             let evenIndices = (0..<self.dataSource.exampleItems.count).flatMap { return ($0 % 2 == 0) ? IndexPath(row: $0, section: 0) : nil }
             let rightAnimation = TableViewAnimation.Cell.right(duration: 0.5)
-            self.tableView.animateCells(animation: rightAnimation, indexPaths: evenIndices, completion: nil)
+            self.tableView.animate(animation: rightAnimation, indexPaths: evenIndices, completion: nil)
 
         }
     }

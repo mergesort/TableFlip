@@ -12,11 +12,11 @@
 		B7D7EF091F532EEB00FA580C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7D7EF071F532EEB00FA580C /* Main.storyboard */; };
 		B7D7EF0B1F532EEB00FA580C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7D7EF0A1F532EEB00FA580C /* Assets.xcassets */; };
 		B7D7EF0E1F532EEB00FA580C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7D7EF0C1F532EEB00FA580C /* LaunchScreen.storyboard */; };
-		B7D7EF171F532F4600FA580C /* UITableView+TableFlip.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D7EF161F532F1F00FA580C /* UITableView+TableFlip.swift */; };
 		B7D7EF191F53306B00FA580C /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D7EF181F53306B00FA580C /* TableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B7A6A82E1F7B081400527EBE /* UITableView+TableFlip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+TableFlip.swift"; sourceTree = "<group>"; };
 		B7D7EF001F532EEB00FA580C /* TableFlipExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableFlipExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7D7EF031F532EEB00FA580C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7D7EF051F532EEB00FA580C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,7 +24,6 @@
 		B7D7EF0A1F532EEB00FA580C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B7D7EF0D1F532EEB00FA580C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B7D7EF0F1F532EEB00FA580C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B7D7EF161F532F1F00FA580C /* UITableView+TableFlip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+TableFlip.swift"; sourceTree = "<group>"; };
 		B7D7EF181F53306B00FA580C /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -39,6 +38,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B7A6A82D1F7B081400527EBE /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				B7A6A82E1F7B081400527EBE /* UITableView+TableFlip.swift */,
+			);
+			name = Source;
+			path = ../../Source;
+			sourceTree = "<group>";
+		};
 		B7D7EEF71F532EEA00FA580C = {
 			isa = PBXGroup;
 			children = (
@@ -58,7 +66,7 @@
 		B7D7EF021F532EEB00FA580C /* TableFlipExample */ = {
 			isa = PBXGroup;
 			children = (
-				B7D7EF151F532F1F00FA580C /* src */,
+				B7A6A82D1F7B081400527EBE /* Source */,
 				B7D7EF031F532EEB00FA580C /* AppDelegate.swift */,
 				B7D7EF051F532EEB00FA580C /* ViewController.swift */,
 				B7D7EF181F53306B00FA580C /* TableViewController.swift */,
@@ -68,15 +76,6 @@
 				B7D7EF0F1F532EEB00FA580C /* Info.plist */,
 			);
 			path = TableFlipExample;
-			sourceTree = "<group>";
-		};
-		B7D7EF151F532F1F00FA580C /* src */ = {
-			isa = PBXGroup;
-			children = (
-				B7D7EF161F532F1F00FA580C /* UITableView+TableFlip.swift */,
-			);
-			name = src;
-			path = ../../src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,7 +150,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7D7EF171F532F4600FA580C /* UITableView+TableFlip.swift in Sources */,
 				B7D7EF061F532EEB00FA580C /* ViewController.swift in Sources */,
 				B7D7EF041F532EEB00FA580C /* AppDelegate.swift in Sources */,
 				B7D7EF191F53306B00FA580C /* TableViewController.swift in Sources */,
