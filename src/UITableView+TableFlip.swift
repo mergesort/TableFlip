@@ -7,6 +7,12 @@ import UIKit
 
 public enum TableViewAnimation {
 
+    /// Animations which animate the entire `UITableView` together.
+    ///
+    /// - top: Animates the `UITableView` in from the top of the screen.
+    /// - bottom: Animates the `UITableView` in from the bottom of the screen.
+    /// - fade: Animates the `UITableView` in with a fade.
+    /// - custom: Animates the `UITableView` using whatever `CGAffineTransform` and `UIViewAnimationOptions` passed in.
     public enum Table {
 
         case top(duration: TimeInterval)
@@ -33,6 +39,12 @@ public enum TableViewAnimation {
         }
     }
 
+    /// Animations which animate each cell in the `UITableView` individually.
+    ///
+    /// - left: Animates each `UITableViewCell` in from the left side of the screen.
+    /// - right: Animates each `UITableViewCell` in from the right side of the screen.
+    /// - fade: Animates each `UITableViewCell` in with a fade.
+    /// - custom: Animates each `UITableViewCell` using whatever `CGAffineTransform` and `UIViewAnimationOptions` passed in.
     public enum Cell {
 
         case left(duration: TimeInterval)
@@ -64,6 +76,11 @@ public enum TableViewAnimation {
 public extension UITableView {
 
     func animateTableView(animation: TableViewAnimation.Table, completion: (() -> Void)? = nil) {
+    /// Animate the entire `UITableView` with a `TableViewAnimation.Table` animation.
+    ///
+    /// - Parameters:
+    ///   - animation: The `TableViewAnimation.Table` animation which we wish to animate.
+    ///   - completion: An optional callback for when the animation completes.
         switch animation {
 
         case .top(let duration):
@@ -82,6 +99,12 @@ public extension UITableView {
     }
 
     func animateCells(animation: TableViewAnimation.Cell, indexPaths: [IndexPath]? = nil, completion: (() -> Void)? = nil) {
+    /// Animate the each individual `UITableViewCell` in a `UITableView` with a `TableViewAnimation.Cell` animation.
+    ///
+    /// - Parameters:
+    ///   - animation: The `TableViewAnimation.Cell` animation which we wish to animate.
+    ///   - indexPaths: Optionally specify which `IndexPath`s you would like for the animation to include.
+    ///   - completion: An optional callback for when the animation completes.
         switch animation {
 
         case .left(let duration):
@@ -99,8 +122,14 @@ public extension UITableView {
         }
     }
 
-    func reloadData(smoothly: Bool, completion: (() -> Void)? = nil) {
-        guard smoothly else {
+    /// An alternative to `UITableView`s default `reloadData()` implementation which allows you to
+    /// reload in place, and provides a callback when the reload is complete.
+    ///
+    /// - Parameters:
+    ///   - inPlace: Whether or not you want to reload in place using `beginUpdates()` and `endUpdates()`.
+    ///   - completion: An optional callback for when the reload completes.
+    func reloadData(inPlace: Bool, completion: (() -> Void)? = nil) {
+        guard inPlace else {
             self.reloadData()
             completion?()
             return
@@ -117,7 +146,7 @@ public extension UITableView {
         self.reloadData()
         self.beginUpdates()
         self.endUpdates()
-        
+
         CATransaction.commit()
     }
 
@@ -156,9 +185,7 @@ fileprivate extension UITableView {
 
 fileprivate extension UITableView {
 
-    // Fix this one
     func animateTableCellsWithDirection(duration: TimeInterval, direction: TableViewAnimation.Cell.AnimationDirection, indexPaths:[IndexPath]?, completion: (() -> Void)? = nil) {
-
         let visibleCells: [UITableViewCell]
 
         if let indexPaths = indexPaths {
@@ -186,7 +213,6 @@ fileprivate extension UITableView {
         }
     }
 
-    // Fix this one
     func animateTableCellsWithTransform(duration: TimeInterval, transform: CGAffineTransform, options: UIViewAnimationOptions = .curveEaseInOut, completion: (() -> Void)? = nil) {
         for (index, cell) in self.visibleCells.enumerated() {
             let delay: TimeInterval = duration/Double(self.visibleCells.count)*Double(index)
