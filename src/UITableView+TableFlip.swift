@@ -20,12 +20,13 @@ public enum TableViewAnimation {
             case bottom
 
             func yPosition(tableView: UITableView) -> CGFloat {
-                if case .top = self {
+                switch self {
+
+                case .top:
                     return -tableView.frame.height
-                } else if case .bottom = self {
+                
+                case .bottom:
                     return tableView.frame.height
-                } else {
-                    return 0
                 }
             }
 
@@ -45,12 +46,13 @@ public enum TableViewAnimation {
             case right
 
             func xPosition(cell: UITableViewCell) -> CGFloat {
-                if case .left = self {
+                switch self {
+
+                case .left:
                     return -cell.frame.width
-                } else if case .right = self {
+
+                case .right:
                     return cell.frame.width
-                } else {
-                    return 0
                 }
             }
 
