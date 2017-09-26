@@ -75,12 +75,12 @@ public enum TableViewAnimation {
 
 public extension UITableView {
 
-    func animateTableView(animation: TableViewAnimation.Table, completion: (() -> Void)? = nil) {
     /// Animate the entire `UITableView` with a `TableViewAnimation.Table` animation.
     ///
     /// - Parameters:
     ///   - animation: The `TableViewAnimation.Table` animation which we wish to animate.
     ///   - completion: An optional callback for when the animation completes.
+    func animate(animation: TableViewAnimation.Table, completion: (() -> Void)? = nil) {
         switch animation {
 
         case .top(let duration):
@@ -98,13 +98,13 @@ public extension UITableView {
         }
     }
 
-    func animateCells(animation: TableViewAnimation.Cell, indexPaths: [IndexPath]? = nil, completion: (() -> Void)? = nil) {
     /// Animate the each individual `UITableViewCell` in a `UITableView` with a `TableViewAnimation.Cell` animation.
     ///
     /// - Parameters:
     ///   - animation: The `TableViewAnimation.Cell` animation which we wish to animate.
     ///   - indexPaths: Optionally specify which `IndexPath`s you would like for the animation to include.
     ///   - completion: An optional callback for when the animation completes.
+    func animate(animation: TableViewAnimation.Cell, indexPaths: [IndexPath]? = nil, completion: (() -> Void)? = nil) {
         switch animation {
 
         case .left(let duration):
