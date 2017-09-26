@@ -216,9 +216,11 @@ fileprivate extension UITableView {
                 cell.alpha = 0.0
                 UIView.animate(withDuration: duration, delay: animationDelay, options: .curveEaseInOut, animations: {
                     cell.alpha = 1.0
-                }, completion: { finished in
-                    completion?()
                 })
+            }
+
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(Int(duration*1000))) {
+                completion?()
             }
         } else {
             let animation = UITableView.fadeAnimationTransition
