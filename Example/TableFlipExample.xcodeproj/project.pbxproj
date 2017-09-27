@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B7A6A82F1F7B531800527EBE /* UITableView+TableFlip.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A6A82E1F7B081400527EBE /* UITableView+TableFlip.swift */; };
 		B7D7EF041F532EEB00FA580C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D7EF031F532EEB00FA580C /* AppDelegate.swift */; };
 		B7D7EF061F532EEB00FA580C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D7EF051F532EEB00FA580C /* ViewController.swift */; };
 		B7D7EF091F532EEB00FA580C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7D7EF071F532EEB00FA580C /* Main.storyboard */; };
@@ -151,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7D7EF061F532EEB00FA580C /* ViewController.swift in Sources */,
+				B7A6A82F1F7B531800527EBE /* UITableView+TableFlip.swift in Sources */,
 				B7D7EF041F532EEB00FA580C /* AppDelegate.swift in Sources */,
 				B7D7EF191F53306B00FA580C /* TableViewController.swift in Sources */,
 			);
