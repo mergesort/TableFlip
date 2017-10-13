@@ -22,14 +22,14 @@
 
 ```swift
 self.tableView.reloadData()
-self.tableView.animateCells(animation: myCoolCellAnimation)
+self.tableView.animate(animation: myCoolCellAnimation)
 ```
 
 ##### And if you want to animate the entire table view at once, the code will look like this: 
 
 ```swift
 self.tableView.reloadData()
-self.tableView.animateTableView(animation: myCoolTableAnimation)
+self.tableView.animate(animation: myCoolTableAnimation)
 ```
 
 Animations are completely customizable and configurable. TableFlip provides a few built-in defaults that work nicely out the box, if you don't want to make your own.
@@ -73,7 +73,7 @@ let customTransform = rotationTransform.concatenating(flipTransform)
 
 let customAnimation = TableViewAnimation.Cell.custom(duration: 0.6, transform: customTransform, options: .curveEaseInOut)
                 
-self.tableView.animateCells(animation: customAnimation, completion: nil)
+self.tableView.animate(animation: customAnimation, completion: nil)
 ```
 
 ![](gifs/custom.gif)
