@@ -189,8 +189,8 @@ fileprivate extension UITableView {
         let visibleCells: [UITableViewCell]
 
         if let indexPaths = indexPaths {
-            let visibleIndexPaths = indexPaths.flatMap({ return (self.indexPathsForVisibleRows?.contains($0) ?? false) ? $0 : nil })
-            visibleCells = visibleIndexPaths.flatMap { self.cellForRow(at: $0) }
+            let visibleIndexPaths = indexPaths.compactMap({ return (self.indexPathsForVisibleRows?.contains($0) ?? false) ? $0 : nil })
+            visibleCells = visibleIndexPaths.compactMap { self.cellForRow(at: $0) }
         } else {
             visibleCells = self.visibleCells
         }
