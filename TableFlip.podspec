@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = 'TableFlip'
-  spec.version      = '1.2'
+  spec.version      = '1.3'
   spec.license      = { :type => 'MIT', :file => 'LICENSE' }
   spec.homepage     = 'https://github.com/mergesort/TableFlip'
   spec.authors      =  { 'Joe Fabisevich' => 'github@fabisevi.ch' }
@@ -11,5 +11,5 @@ Pod::Spec.new do |spec|
   spec.requires_arc = true
   spec.social_media_url = 'https://twitter.com/mergesort'
   spec.ios.deployment_target = '8.0'
-
+  spec.swift_version = '4.2'
 end

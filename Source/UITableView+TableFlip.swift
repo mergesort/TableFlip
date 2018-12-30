@@ -18,7 +18,7 @@ public enum TableViewAnimation {
         case top(duration: TimeInterval)
         case bottom(duration: TimeInterval)
         case fade(duration: TimeInterval)
-        case custom(duration: TimeInterval, transform: CGAffineTransform, options: UIViewAnimationOptions)
+        case custom(duration: TimeInterval, transform: CGAffineTransform, options: UIView.AnimationOptions)
 
         fileprivate enum AnimationDirection {
 
@@ -50,7 +50,7 @@ public enum TableViewAnimation {
         case left(duration: TimeInterval)
         case right(duration: TimeInterval)
         case fade(duration: TimeInterval)
-        case custom(duration: TimeInterval, transform: CGAffineTransform, options: UIViewAnimationOptions)
+        case custom(duration: TimeInterval, transform: CGAffineTransform, options: UIView.AnimationOptions)
 
         fileprivate enum AnimationDirection {
 
@@ -156,7 +156,7 @@ public extension UITableView {
 
 fileprivate extension UITableView {
 
-    func animateTableViewWithTransform(duration: TimeInterval, transform: CGAffineTransform, options: UIViewAnimationOptions = .curveEaseInOut, completion: (() -> Void)? = nil) {
+    func animateTableViewWithTransform(duration: TimeInterval, transform: CGAffineTransform, options: UIView.AnimationOptions = .curveEaseInOut, completion: (() -> Void)? = nil) {
         self.layer.setAffineTransform(transform)
 
         UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 0.75, initialSpringVelocity: 0.0, options: options, animations: {
@@ -213,7 +213,7 @@ fileprivate extension UITableView {
         }
     }
 
-    func animateTableCellsWithTransform(duration: TimeInterval, transform: CGAffineTransform, options: UIViewAnimationOptions = .curveEaseInOut, completion: (() -> Void)? = nil) {
+    func animateTableCellsWithTransform(duration: TimeInterval, transform: CGAffineTransform, options: UIView.AnimationOptions = .curveEaseInOut, completion: (() -> Void)? = nil) {
         for (index, cell) in self.visibleCells.enumerated() {
             let delay: TimeInterval = duration/Double(self.visibleCells.count)*Double(index)
             let damping: CGFloat = 0.55
@@ -254,9 +254,9 @@ fileprivate extension UITableView {
         } else {
             func fadeAnimationTransition() -> CATransition {
                 let animation = CATransition()
-                animation.type = kCATransitionFade
-                animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-                animation.fillMode = kCAFillModeBoth
+                animation.type = CATransitionType.fade
+                animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+                animation.fillMode = CAMediaTimingFillMode.both
 
                 return animation
             }
