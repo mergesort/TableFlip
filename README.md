@@ -6,7 +6,7 @@
 ---
 
 [![Pod Version](https://img.shields.io/badge/Pod-1.1-6193DF.svg)](https://cocoapods.org/)
-![Swift Version](https://img.shields.io/badge/Swift-3.0%20|%203.1%20|%203.2%20|%204.0-brightgreen.svg)
+![Swift Version](https://img.shields.io/badge/Swift-4.2-brightgreen.svg)
 ![License MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg) 
 ![Plaform](https://img.shields.io/badge/Platform-iOS-lightgrey.svg)
 
@@ -81,7 +81,8 @@ self.tableView.animate(animation: customAnimation, completion: nil)
 ## Requirements
 
 - iOS 8.0+
-- Xcode 7.3+
+- Xcode 10.0+
+- Swift 4.2
 
 ## Installation
 You can use [CocoaPods](http://cocoapods.org/) to install `TableFlip` by adding it to your `Podfile`:

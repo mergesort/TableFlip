@@ -128,7 +128,7 @@ private extension TableViewController {
             self.tableView.animate(animation: customAnimation, completion: nil)
 
         case .indexPaths:
-            let evenIndices = (0..<self.dataSource.exampleItems.count).flatMap { return ($0 % 2 == 0) ? IndexPath(row: $0, section: 0) : nil }
+			let evenIndices = (0..<self.dataSource.exampleItems.count).compactMap { return ($0 % 2 == 0) ? IndexPath(row: $0, section: 0) : nil }
             let rightAnimation = TableViewAnimation.Cell.right(duration: 0.5)
             self.tableView.animate(animation: rightAnimation, indexPaths: evenIndices, completion: nil)
 

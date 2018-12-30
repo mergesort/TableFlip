@@ -1,5 +1,9 @@
 # Change Log
 
+# 1.3 (2018-12-31)
+
+- Added support for Swift 4.2.
+
 # 1.2 (2017-09-27)
 
 - `animateTableView()` and `animateCells()` have been renamed to `animate()` and are differentiated based on the parameter passed in.
