@@ -128,10 +128,15 @@ private extension TableViewController {
             self.tableView.animate(animation: customAnimation, completion: nil)
 
         case .indexPaths:
-			let evenIndices = (0..<self.dataSource.exampleItems.count).compactMap { return ($0 % 2 == 0) ? IndexPath(row: $0, section: 0) : nil }
+            let groupedItems = Dictionary(grouping: (0..<self.dataSource.exampleItems.count), by: { $0 % 2 })
+
+            let oddIndices = groupedItems[1]?.compactMap { IndexPath(row: $0, section: 0) }
+            let leftAnimation = TableViewAnimation.Cell.left(duration: 0.5)
+            self.tableView.animate(animation: leftAnimation, indexPaths: oddIndices, completion: nil)
+
+            let evenIndices = groupedItems[0]?.compactMap { IndexPath(row: $0, section: 0) }
             let rightAnimation = TableViewAnimation.Cell.right(duration: 0.5)
             self.tableView.animate(animation: rightAnimation, indexPaths: evenIndices, completion: nil)
-
         }
     }
     
