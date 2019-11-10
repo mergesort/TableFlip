@@ -14,10 +14,9 @@ public enum TableViewAnimation {
     /// - fade: Animates the `UITableView` in with a fade.
     /// - custom: Animates the `UITableView` using whatever `CGAffineTransform` and `UIViewAnimationOptions` passed in.
     public enum Table {
-
-        case top(duration: TimeInterval)
-        case bottom(duration: TimeInterval)
-        case fade(duration: TimeInterval)
+        case top(duration: TimeInterval = 0.5)
+        case bottom(duration: TimeInterval = 0.5)
+        case fade(duration: TimeInterval = 0.5)
         case custom(duration: TimeInterval, transform: CGAffineTransform, options: UIView.AnimationOptions)
 
         fileprivate enum AnimationDirection {
@@ -46,10 +45,9 @@ public enum TableViewAnimation {
     /// - fade: Animates each `UITableViewCell` in with a fade.
     /// - custom: Animates each `UITableViewCell` using whatever `CGAffineTransform` and `UIViewAnimationOptions` passed in.
     public enum Cell {
-
-        case left(duration: TimeInterval)
-        case right(duration: TimeInterval)
-        case fade(duration: TimeInterval)
+        case left(duration: TimeInterval = 0.5)
+        case right(duration: TimeInterval = 0.5)
+        case fade(duration: TimeInterval = 0.5)
         case custom(duration: TimeInterval, transform: CGAffineTransform, options: UIView.AnimationOptions)
 
         fileprivate enum AnimationDirection {
@@ -70,7 +68,6 @@ public enum TableViewAnimation {
 
         }
     }
-
 }
 
 public extension UITableView {
