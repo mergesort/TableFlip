@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B7A6A82F1F7B531800527EBE /* UITableView+TableFlip.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A6A82E1F7B081400527EBE /* UITableView+TableFlip.swift */; };
 		B7BF193D23787E33005D0098 /* ExampleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BF193C23787E33005D0098 /* ExampleDataSource.swift */; };
+		B7BF194623788944005D0098 /* UITableView+TableFlip.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BF194523788944005D0098 /* UITableView+TableFlip.swift */; };
 		B7D7EF041F532EEB00FA580C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D7EF031F532EEB00FA580C /* AppDelegate.swift */; };
 		B7D7EF061F532EEB00FA580C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D7EF051F532EEB00FA580C /* ViewController.swift */; };
 		B7D7EF091F532EEB00FA580C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7D7EF071F532EEB00FA580C /* Main.storyboard */; };
@@ -18,8 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B7A6A82E1F7B081400527EBE /* UITableView+TableFlip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+TableFlip.swift"; sourceTree = "<group>"; };
 		B7BF193C23787E33005D0098 /* ExampleDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleDataSource.swift; sourceTree = "<group>"; };
+		B7BF194523788944005D0098 /* UITableView+TableFlip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+TableFlip.swift"; sourceTree = "<group>"; };
 		B7D7EF001F532EEB00FA580C /* TableFlipExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableFlipExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7D7EF031F532EEB00FA580C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7D7EF051F532EEB00FA580C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -41,13 +41,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B7A6A82D1F7B081400527EBE /* Source */ = {
+		B7BF194323788944005D0098 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				B7A6A82E1F7B081400527EBE /* UITableView+TableFlip.swift */,
+				B7BF194423788944005D0098 /* TableFlip */,
 			);
-			name = Source;
-			path = ../../Source;
+			name = Sources;
+			path = ../../Sources;
+			sourceTree = "<group>";
+		};
+		B7BF194423788944005D0098 /* TableFlip */ = {
+			isa = PBXGroup;
+			children = (
+				B7BF194523788944005D0098 /* UITableView+TableFlip.swift */,
+			);
+			path = TableFlip;
 			sourceTree = "<group>";
 		};
 		B7D7EEF71F532EEA00FA580C = {
@@ -69,7 +77,7 @@
 		B7D7EF021F532EEB00FA580C /* TableFlipExample */ = {
 			isa = PBXGroup;
 			children = (
-				B7A6A82D1F7B081400527EBE /* Source */,
+				B7BF194323788944005D0098 /* Sources */,
 				B7D7EF031F532EEB00FA580C /* AppDelegate.swift */,
 				B7D7EF051F532EEB00FA580C /* ViewController.swift */,
 				B7D7EF181F53306B00FA580C /* TableViewController.swift */,
@@ -157,7 +165,7 @@
 			files = (
 				B7D7EF061F532EEB00FA580C /* ViewController.swift in Sources */,
 				B7BF193D23787E33005D0098 /* ExampleDataSource.swift in Sources */,
-				B7A6A82F1F7B531800527EBE /* UITableView+TableFlip.swift in Sources */,
+				B7BF194623788944005D0098 /* UITableView+TableFlip.swift in Sources */,
 				B7D7EF041F532EEB00FA580C /* AppDelegate.swift in Sources */,
 				B7D7EF191F53306B00FA580C /* TableViewController.swift in Sources */,
 			);

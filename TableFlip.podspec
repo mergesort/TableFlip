@@ -6,7 +6,7 @@ Pod::Spec.new do |spec|
   spec.authors      =  { 'Joe Fabisevich' => 'github@fabisevi.ch' }
   spec.summary      = 'A simpler way to do cool UITableView animations! (╯°□°）╯︵ ┻━┻'
   spec.source       =   { :git => 'https://github.com/mergesort/TableFlip.git', :tag => "#{spec.version}" }
-  spec.source_files = 'Source/*.swift'
+  spec.source_files = 'Sources/TableFlip/*.swift'
   spec.framework    = 'Foundation'
   spec.requires_arc = true
   spec.social_media_url = 'https://twitter.com/mergesort'
